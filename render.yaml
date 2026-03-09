@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: hi-touch-trend-api
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: NAVER_CLIENT_ID
+        sync: false          # Render 대시보드에서 직접 입력
+      - key: NAVER_CLIENT_SECRET
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false          # 예: https://hi-touch-trend.vercel.app,http://localhost:5173
+      - key: DATA_DIR
+        value: data
