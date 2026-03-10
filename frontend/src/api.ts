@@ -1,6 +1,7 @@
 // 로컬: Vite proxy(/api → localhost:8000)
 // 프로덕션: VITE_API_URL 환경변수 (예: https://hi-touch-trend-api.onrender.com/api)
-const API_BASE = import.meta.env.VITE_API_URL ?? '/api'
+// ?? 대신 || 사용: 빈 문자열("")도 폴백으로 처리
+const API_BASE = (import.meta as any).env?.VITE_API_URL || '/api'
 
 async function fetchApi<T>(path: string): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`)

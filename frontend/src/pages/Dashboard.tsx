@@ -82,9 +82,10 @@ export default function Dashboard() {
                 <Tooltip
                   contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: 8 }}
                   labelStyle={{ color: '#f1f5f9' }}
-                  formatter={(value: number, name: string, props: { payload: { 상승률: number } }) =>
+                  formatter={(value: any, name: any, props: any) => {
                     name === '검색량' ? [formatVolume(value), '검색량'] : [`${props.payload.상승률.toFixed(1)}%`, '전주 대비']
-                  }
+                    return [value, name];
+                  }}
                 />
                 <Bar dataKey="검색량" radius={[0, 6, 6, 0]} maxBarSize={48}>
                   {hotChartData.map((_, i) => (
